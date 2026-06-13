@@ -163,51 +163,60 @@ export default function BookingModal({ isOpen, onClose, initialService }: Bookin
         onClick={step < 6 ? onClose : undefined}
       />
 
-      {/* Panel */}
+      {/* Panel — slides up from bottom */}
       <motion.div
-        initial={{ opacity: 0, y: 48 }}
+        initial={{ opacity: 0, y: '100%' }}
         animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: 48 }}
-        transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
+        exit={{ opacity: 0, y: '100%' }}
+        transition={{ duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] }}
         className="relative w-full md:max-w-[480px] bg-espresso border-t border-gold/15 md:border md:border-gold/12 shadow-[0_-20px_80px_rgba(0,0,0,0.6)] md:shadow-[0_20px_80px_rgba(0,0,0,0.8)]"
         style={{ maxHeight: '93dvh' }}
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Header */}
+        {/* Header — dots progress + back + close */}
         <div className="flex items-center justify-between px-6 md:px-8 py-4 border-b border-ivory/8">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
             {step > startStep && step < 6 && (
               <button
                 onClick={back}
-                className="text-ivory/35 hover:text-ivory transition-colors p-1 -ml-1 mr-1"
+                className="text-ivory/35 hover:text-ivory transition-colors p-1 -ml-1"
                 aria-label="Go back"
               >
                 <ChevronLeft size={16} />
               </button>
             )}
-            <span className="text-[9px] tracking-[0.45em] uppercase text-gold/60 font-sans">
-              {step < 6 ? `Step ${displayStep} of ${totalSteps}` : 'Confirmed'}
-            </span>
+            {/* Step dots */}
+            {step < 6 && (
+              <div className="flex items-center gap-1.5">
+                {Array.from({ length: totalSteps }).map((_, i) => {
+                  const dotStep = i + 1;
+                  return (
+                    <div
+                      key={dotStep}
+                      className={`rounded-full transition-all duration-300 ${
+                        dotStep < displayStep
+                          ? 'w-1.5 h-1.5 bg-gold/50'
+                          : dotStep === displayStep
+                          ? 'w-2 h-2 bg-gold'
+                          : 'w-1.5 h-1.5 bg-ivory/15'
+                      }`}
+                    />
+                  );
+                })}
+              </div>
+            )}
+            {step === 6 && (
+              <div className="w-2 h-2 rounded-full bg-gold" />
+            )}
           </div>
           <button
             onClick={onClose}
-            className="text-ivory/25 hover:text-ivory/70 transition-colors p-1"
+            className="text-ivory/25 hover:text-ivory/60 transition-colors p-1"
             aria-label="Close"
           >
             <X size={16} />
           </button>
         </div>
-
-        {/* Progress bar */}
-        {step < 6 && (
-          <div className="h-[1px] bg-ivory/6">
-            <motion.div
-              className="h-full bg-gold"
-              animate={{ width: `${(displayStep / totalSteps) * 100}%` }}
-              transition={{ duration: 0.5, ease: 'easeInOut' }}
-            />
-          </div>
-        )}
 
         {/* Scrollable content */}
         <div
