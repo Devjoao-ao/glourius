@@ -44,7 +44,10 @@ export default function ServiceCard({ service, index, onBook }: ServiceCardProps
               </span>
             </div>
             <div className="text-[10px] text-ivory/30 font-sans mt-0.5">
-              Touch-up ${service.touchUpPrice} · Deposit ${service.deposit}
+              {service.hasTouchUp && (
+                <>Touch-up ${service.touchUpPrice} ·{' '}</>
+              )}
+              Deposit ${service.deposit}
             </div>
           </div>
 

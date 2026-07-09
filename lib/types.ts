@@ -8,6 +8,18 @@ export interface Service {
   price: number;
   touchUpPrice: number;
   deposit: number;
+  hasTouchUp: boolean;
+}
+
+export interface GuidelineItem {
+  title: string;
+  items: string[];
+}
+
+export interface CategoryGuidelines {
+  before: GuidelineItem[];
+  after: GuidelineItem[];
+  contraindications?: string[];
 }
 
 export interface BookingFormData {

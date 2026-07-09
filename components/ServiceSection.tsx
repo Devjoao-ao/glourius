@@ -4,8 +4,9 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import { Service, ServiceCategory } from '@/lib/types';
-import { services, categories } from '@/lib/data';
+import { services, categories, guidelines } from '@/lib/data';
 import ServiceCard from './ServiceCard';
+import GuidelinesAccordion from './GuidelinesAccordion';
 
 interface ServiceSectionProps {
   onBookService: (service: Service) => void;
@@ -67,7 +68,7 @@ export default function ServiceSection({ onBookService }: ServiceSectionProps) {
                 onClick={() => toggle(cat.id)}
                 className={`relative overflow-hidden text-left transition-all duration-400 p-10 md:p-12 min-h-[200px] md:min-h-[240px] flex flex-col justify-between
                   ${isActive
-                    ? 'border border-gold/35 bg-espresso/45'
+                    ? 'border border-gold/35 bg-espresso/45 shadow-[0_0_30px_rgba(201,168,76,0.06)]'
                     : 'border border-ivory/8 bg-espresso/15'
                   }
                 `}
@@ -146,6 +147,9 @@ export default function ServiceSection({ onBookService }: ServiceSectionProps) {
                   />
                 ))}
               </div>
+
+              {/* Guidelines accordion */}
+              <GuidelinesAccordion guidelines={guidelines[active]} />
             </motion.div>
           )}
         </AnimatePresence>
