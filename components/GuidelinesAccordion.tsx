@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Info } from 'lucide-react';
+import { Info, Plus } from 'lucide-react';
 import { CategoryGuidelines } from '@/lib/types';
 
 interface GuidelinesAccordionProps {
@@ -38,13 +38,12 @@ export default function GuidelinesAccordion({ guidelines }: GuidelinesAccordionP
           Care Guidelines
         </span>
         <div className="flex-1 border-t border-ivory/8" />
-        <motion.span
+        <motion.div
           animate={{ rotate: isOpen ? 45 : 0 }}
           transition={{ duration: 0.3 }}
-          className="text-ivory/30 text-lg leading-none font-sans font-light block w-4 h-4 flex items-center justify-center"
         >
-          +
-        </motion.span>
+          <Plus size={14} className="text-ivory/30" strokeWidth={1.5} />
+        </motion.div>
       </button>
 
       <AnimatePresence>

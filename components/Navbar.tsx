@@ -27,11 +27,11 @@ export default function Navbar({ onBookNow }: NavbarProps) {
           : 'bg-transparent'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-12 h-16 flex items-center justify-between relative">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 h-16 flex items-center justify-between gap-4">
         {/* Left */}
         <a
           href="#services"
-          className="hidden md:block text-ivory/40 hover:text-ivory/80 text-[10px] tracking-[0.35em] uppercase font-sans transition-colors duration-300"
+          className="hidden md:block text-ivory/40 hover:text-ivory/80 text-[10px] tracking-[0.35em] uppercase font-sans transition-colors duration-300 flex-shrink-0"
         >
           Services
         </a>
@@ -39,10 +39,10 @@ export default function Navbar({ onBookNow }: NavbarProps) {
         {/* Center logo */}
         <a
           href="/"
-          className="absolute left-1/2 -translate-x-1/2 group"
+          className="group flex-shrink-0"
           aria-label="Glorious Eye — Home"
         >
-          <span className="font-display text-xl text-ivory tracking-[0.25em] uppercase group-hover:text-gold/90 transition-colors duration-400">
+          <span className="font-display text-lg md:text-xl text-ivory tracking-[0.2em] md:tracking-[0.25em] uppercase group-hover:text-gold/90 transition-colors duration-400">
             Glorious Eye
           </span>
         </a>
@@ -50,7 +50,7 @@ export default function Navbar({ onBookNow }: NavbarProps) {
         {/* Right */}
         <button
           onClick={onBookNow}
-          className="ml-auto px-5 py-2 rounded-full border border-gold/40 text-[10px] tracking-[0.3em] uppercase font-sans text-gold hover:bg-gold hover:text-noir transition-all duration-300"
+          className="px-4 md:px-5 py-2 rounded border border-gold/40 text-[10px] tracking-[0.3em] uppercase font-sans text-gold hover:bg-gold hover:text-noir transition-all duration-300 flex-shrink-0"
           aria-label="Open booking"
         >
           Book Now
